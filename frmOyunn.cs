@@ -19,13 +19,21 @@ namespace ders2
         public frmOyunn()
         {
             InitializeComponent();
+            
+            Image panel = new Bitmap(@"C:\Users\Arda Işıktaş\Desktop\Dersler\Nesne Tabanlı Programlama\ders2\ders2\Resources\panel2.jpg");
+            pnlGosterge.BackgroundImage = panel;
+
         }
 
         private void tmrButton_Tick(object sender, EventArgs e)
         {
             
             Button btn = new Button();
-            btn.Size = new Size(50, 50);
+            Image hedef= new Bitmap(@"C:\Users\Arda Işıktaş\Desktop\Dersler\Nesne Tabanlı Programlama\ders2\ders2\Resources\hedef.jpg");
+            btn.BackgroundImage = hedef;
+            Image arkaplan = new Bitmap(@"C:\Users\Arda Işıktaş\Desktop\Dersler\Nesne Tabanlı Programlama\ders2\ders2\Resources\arkaplan3.jpg");
+            this.BackgroundImage = arkaplan;
+            btn.Size = new Size(50, 73);
             btn.Location = new Point(rnd.Next(this.ClientSize.Width - pnlGosterge.Width - btn.Width) , rnd.Next(this.ClientSize.Height - btn.Height));
             btn.Text = rnd.Next(250).ToString();
             btn.Click += Btn_Click;
@@ -37,7 +45,7 @@ namespace ders2
         {
             Button btn = (Button)sender;
             toplam += int.Parse(btn.Text);
-            lblScore.Text = $"Skor:{toplam}";
+            lblScore.Text = $"Skorunuz: {toplam}";
             btn.Dispose();
 
         }
@@ -48,14 +56,14 @@ namespace ders2
             
         }
         
-        private static void FSkayit(string deger)
+        private static void FSkayit(string kayit)
         {
 
 
             FileStream fs = new FileStream("logkayit", FileMode.Append);
             StreamWriter sw = new StreamWriter(fs);
             sw.Write(DateTime.Now + " ");
-            sw.Write(deger + "\n");
+            sw.Write(kayit + "\n");
             fs.Flush();
             sw.Close();
             fs.Close();
@@ -75,11 +83,12 @@ namespace ders2
 
                 DialogResult result = new DialogResult();
 
-                result = MessageBox.Show($"Oyununuz bitmiştir. \nSkorunuz: {lblScore.Text} Puan\n" +
-                "Yeniden oynamak için tıklayınız..", "ÇIKIŞ", MessageBoxButtons.YesNo);
+                result = MessageBox.Show($"Oyununuz bitmiştir. \n{lblScore.Text}\n" +
+                "Tekrar oynamak için tıklayınız..", "ÇIKIŞ", MessageBoxButtons.YesNo);
 
                 if (result == DialogResult.No)
                 {
+                    MessageBox.Show("Tekrar bekleriz", "Reflex Oyunu");
                     Application.Exit();
                 }
                 else
@@ -94,7 +103,7 @@ namespace ders2
         {
             tmrButton.Start();
             tmrSure.Start();
-            btnBaslat.BackColor = Color.Black;
+           //btnBaslat.BackColor = Color.Black;
         }
 
         private void btnBitir_Click(object sender, EventArgs e)
@@ -104,11 +113,12 @@ namespace ders2
             lblSure.Text = "0";
             DialogResult result = new DialogResult();
 
-            result = MessageBox.Show($"Oyununuz bitmiştir. \nSkorunuz: {lblScore.Text} Puan\n" +
-            "Yeniden oynamak için tıklayınız..", "ÇIKIŞ", MessageBoxButtons.YesNo);
+            result = MessageBox.Show($"Oyununuz bitmiştir. \n{lblScore.Text}\n" +
+            "Tekrar oynamak için tıklayınız..", "ÇIKIŞ", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.No)
             {
+                MessageBox.Show("Tekrar bekleriz", "Reflex Oyunu");
                 Application.Exit();
             }
             else
