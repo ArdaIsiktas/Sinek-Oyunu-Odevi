@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ders2
+namespace Hedef
 {
     public partial class frmOyunn : Form
     {
