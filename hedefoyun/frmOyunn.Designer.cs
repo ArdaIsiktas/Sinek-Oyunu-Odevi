@@ -1,4 +1,4 @@
-﻿namespace ders2
+﻿namespace Hedef
 {
     partial class frmOyunn
     {
